@@ -1,0 +1,62 @@
+extends ../layout
+
+block content
+  .well
+    .row
+      .col-sm-4
+        row
+          h2= title
+          form(action='/polls/vote', method='POST')
+            input(type='hidden', name='_csrf', value=_csrf)
+            input(type='hidden', name='qid', value=qid)
+            .form-group
+              I want to choose :
+            .form-group
+              select.form-control(id='voteId', name='voteId')
+                option(value, disabled='disabled', selected='selected', hidden) select an option ...
+                for option in options
+                  option(value=option)= option
+            .form-group
+              button.btn.btn-primary(type='submit') Submit
+        
+      .col-sm-7.col-sm-offset-1
+        br
+        row
+          canvas#myChart(width='300', height='300')
+        row 
+          #info
+        if isOwner
+          form(action='/polls/delete', method='POST')
+            input(type='hidden', name='_csrf', value=_csrf)
+            input(type='hidden', name='qid', value= qid)
+            button.btn.btn-danger.btn-block(type='submit') Remove this Poll
+
+
+block script
+  script(src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js')
+  
+  script.
+    $(document).ready(function () {
+      var ctx = $("#myChart").get(0).getContext("2d");
+      $.getJSON('/api/vote_result/?qid=' + '#{qid}', function (data) {
+        var chart_data = data.map(function(g) {
+          return { 
+          value: g.count, 
+          label: g._id,
+          color:"#" + Math.random().toString(16).slice(2, 8),
+          labelColor : 'white',
+          labelFontSize : '16'
+
+          }
+        });
+        
+        var piechart = new Chart(ctx).Pie(chart_data);
+        for(var i  = 0; i<chart_data.length; i++){
+          voteinfo = '<p>option:'+ chart_data[i].label + ',count:'+ chart_data[i].value + '</p>'
+           $('#info').append(voteinfo)
+        }
+      });
+      
+      
+    });
+    

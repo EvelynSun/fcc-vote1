@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+    #content
+      h1 My Polls
+      .list-group
+        for x in polls
+          a.list-group-item(href=x.url)= x.title
