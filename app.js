@@ -25,8 +25,10 @@
  /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
+ 
+ dotenv.config({silent: true});
 dotenv.load({ path: '.env.example' });
-dotenv.config({silent: true})
+
 
  /**
   * Controllers(route handlers)
