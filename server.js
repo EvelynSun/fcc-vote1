@@ -47,8 +47,12 @@ dotenv.load({ path: '.env.example' });
      * connect to MongoDB
      *
      */
+     var mongouri = process.env.MONGODB_URI || process.env.MONGOLAB_URI;
+     mongoose.connect(mongouri,function(){
+      console.log('MongoDB now is connected to'+ mongouri);
+     });
      
-     mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+     console.log('MongoDB now is connected to'+ mongouri);
      mongoose.connection.on('error',()=>{
        console.log('MongoDB Connection Error.Please make sure that the MONGODB is running');
        
