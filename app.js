@@ -9,7 +9,7 @@
  var logger = require('morgan');
  var errorHandler = require('errorhandler');
  var lusca = require('lusca');
- var dotenv = require('dotenv').config({silent: true});
+ var dotenv = require('dotenv');
  
  var MongoStore =  require('connect-mongo')(session);
  var flash = require('express-flash')
@@ -26,6 +26,7 @@
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.load({ path: '.env' });
+dotenv.config({silent: true})
 
  /**
   * Controllers(route handlers)
