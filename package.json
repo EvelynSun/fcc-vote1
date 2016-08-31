@@ -6,7 +6,7 @@
     "url": "https://github.com/sahat/hackathon-starter.git"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": " server.js",
     "test": "mocha --reporter spec --timeout 5000"
   },
   "dependencies": {
