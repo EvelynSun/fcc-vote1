@@ -53,7 +53,9 @@ dotenv.load({ path: '.env.example' });
      *
      */
      mongoose.Promise = global.Promise
-     var mongouri = process.env.MONGODB_URI || process.env.MONGOLAB_URI;
+     //var mongouri = process.env.MONGODB_URI || process.env.MONGOLAB_URI;
+     
+     var mongouri = process.env.MONGOLAB_URI
     // var mongouri = 'mongodb://localhost:27017/test';
      mongoose.connect(mongouri,function(){
       console.log('MongoDB now is connected to'+ mongouri);
