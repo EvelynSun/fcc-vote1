@@ -27,7 +27,7 @@
  */
  
  dotenv.config({silent: true});
-dotenv.load({ path: '.env.example' });
+dotenv.load({ path: '.env' });
 
 
  /**
@@ -94,7 +94,7 @@ dotenv.load({ path: '.env.example' });
         saveUninitialized: true,
         secret:process.env.SESSION_SECRET,
         store: new MongoStore({
-          url:process.env.MONGODB || process.env.MONGOLAB_URI,
+          url:process.env.MONGODB_URI || process.env.MONGOLAB_URI,
           autoReconnect:true
         })
       }));
