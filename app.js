@@ -27,7 +27,7 @@
  */
  
  dotenv.config({silent: true});
-dotenv.load({ path: '.env' });
+dotenv.load({ path: '.env.example' });
 
 
  /**
