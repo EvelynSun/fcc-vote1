@@ -40,7 +40,7 @@ dotenv.load({ path: '.env.example' });
    * API keys and Passport configuration
    *
    */
-   var passportConfig = require('./config/passport')
+  // var passportConfig = require('./config/passport')
    /**
     * create express server
     *
@@ -94,7 +94,7 @@ dotenv.load({ path: '.env.example' });
         saveUninitialized: true,
         secret:process.env.SESSION_SECRET,
         store: new MongoStore({
-          url:process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+          url:process.env.MONGODB || process.env.MONGOLAB_URI,
           autoReconnect:true
         })
       }));
